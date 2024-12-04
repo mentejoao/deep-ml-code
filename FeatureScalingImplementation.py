@@ -5,7 +5,8 @@ import numpy as np
 # standardization ou z-score normalization: x' = (x - mean) / (std)
 # coloca os dados para terem média 0 e desvio padrão 1
 # casos de uso:
-# algoritmos que funcionam melhor com média 0 e desvio padrão 1, "funções centradas no zero"
+# algoritmos que funcionam melhor com média 0 e desvio padrão 1 / espera que a distribuição dos dados seja normal, "funções centradas no zero"
+# espera que a distribuição seja normal!!!
 # Regressão Linear e Logística, SVM, PCA
 # observação: bem menos sensível a outliers em relação a min-max scaling
 # observação2: não altera a forma da distribuição, apenas redimensiona
@@ -20,6 +21,7 @@ import numpy as np
 # 1: x assume xmax então -> xmax - xmin / xmax - xmin = 1
 # 0: x assume xmin então -> xmin - xmin / xmax - xmin = 0
 # observaçãoo s2: não altera a forma da distribuição, apenas redimensiona o valor
+# observação 3: não espera algo sobre a distrbuição dos dados
 
 
 def feature_scaling(data: np.ndarray) -> (np.ndarray, np.ndarray):
