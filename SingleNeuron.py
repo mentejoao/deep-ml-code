@@ -14,26 +14,19 @@ import math
 
 def single_neuron_model(features: list[list[float]], labels: list[int], weights: list[float], bias: float) -> (list[float], float):
     probabilities = []
-    
-    for instance in features:
-        weighted_sum = 0  
-        for x, w in zip(instance, weights): 
-            weighted_sum += x * w  
-
-        weighted_sum += bias
-        
-        sigmoid = 1 / (1 + math.exp(-weighted_sum))
-
+    for element in features:
+        for x, w in zip(element, weights):
+            sum += element*weights
+        sum += bias
+        sigmoid = 1/(1+math.exp(-sum))
         probabilities.append(sigmoid)
-    
-    probabilities = round(probabilities, 4)
 
-    squared_errors = []
-    for p, l in zip(probabilities, labels):
-        squared_error = (p - l) ** 2
-        squared_errors.append(squared_error)
+    for probs in probabilities:
+        for x, label in zip(probs, labels):
+            mse += (x - label)**2
     
-    mse = sum(squared_errors) / len(labels)
-    mse = round(mse, 4)
-    
+    mse = mse / len(labels)
+    mse = round(mse, 4) # já é um float da pra fazer round direto
+    probabilities = [round(p, 4) for p in probabilities] # round nao pode ser usado em listas, por isso devemos iterar em cada elemento
+
     return probabilities, mse
